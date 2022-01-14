@@ -1,0 +1,14 @@
+FROM python:3.9-slim
+
+ENV DOCKER_CONTAINER YES
+
+RUN \
+    apt-get update && \
+    apt-get install make -y && \
+    apt-get clean
+
+WORKDIR /app
+COPY ./etc/bashrc /root/.bashrc
+COPY ./etc/welcome.txt /root
+
+CMD ["bash"]

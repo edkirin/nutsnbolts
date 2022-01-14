@@ -1,0 +1,25 @@
+version: '3.8'
+
+networks:
+  nutsnbolts-net:
+    external: true
+
+services:
+  bolts:
+    hostname: bolts
+    networks:
+      - nutsnbolts-net
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - .:/app
+    environment:
+      INTERNAL_PORT: 5000
+      WORKERS: 2
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: nutsnbolts
+      DB_USER: nutsnbolts
+      DB_PASSWORD: nutsnbolts
+      DOCKER_CONTAINER: YES

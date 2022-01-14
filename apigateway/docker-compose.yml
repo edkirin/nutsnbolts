@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  nuts:
+    build: .
+    command: /app/run.sh
+    ports:
+      - "80:5000"
+    environment:
+      - INTERNAL_PORT=5000
+      - EXTERNAL_PORT=80
+      - NUTS_HOST=http://nuts-n-bolts:5001
+      - BOLTS_HOST=http://nuts-n-bolts:5002
+      - WORKERS=2
+    networks:
+      - nutsnbolts-net

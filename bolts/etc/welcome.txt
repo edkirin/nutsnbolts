@@ -1,0 +1,7 @@
+
+------------------------------------------------------------------------------
+
+Welcome to the container!
+    make install    - pip installs required libs
+    make run        - run application
+

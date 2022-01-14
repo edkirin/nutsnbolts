@@ -1,0 +1,60 @@
+version: '3.8'
+
+networks:
+  nutsnbolts-net:
+    name: nutsnbolts-net
+
+services:
+  apigateway:
+    image: apigateway-service:latest
+    command: /app/run.sh
+    ports:
+      - 80:5000
+    environment:
+      - INTERNAL_PORT=5000
+      - EXTERNAL_PORT=80
+      - NUTS_HOST=http://nuts:5000
+      - BOLTS_HOST=http://bolts:5000
+      - WORKERS=2
+    networks:
+      - nutsnbolts-net
+  nuts:
+    image: nuts-service:latest
+    command: /app/run.sh
+    environment:
+      - INTERNAL_PORT=5000
+      - WORKERS=2
+      - DB_HOST=nutsnbolts-db
+      - DB_PORT=5432
+      - DB_NAME=nutsnbolts
+      - DB_USER=nutsnbolts
+      - DB_PASSWORD=nutsnbolts
+    networks:
+      - nutsnbolts-net
+    depends_on:
+      - nutsnbolts-db
+  bolts:
+    image: bolts-service:latest
+    command: /app/run.sh
+    environment:
+      - INTERNAL_PORT=5000
+      - WORKERS=2
+      - DB_HOST=nutsnbolts-db
+      - DB_PORT=5432
+      - DB_NAME=nutsnbolts
+      - DB_USER=nutsnbolts
+      - DB_PASSWORD=nutsnbolts
+    networks:
+      - nutsnbolts-net
+    depends_on:
+      - nutsnbolts-db
+  nutsnbolts-db:
+    image: nutsnbolts-db:latest
+    ports:
+      - "55432:5432"
+    environment:
+      - POSTGRES_DB=nutsnbolts
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - nutsnbolts-net
