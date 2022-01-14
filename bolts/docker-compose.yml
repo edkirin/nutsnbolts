@@ -17,7 +17,7 @@ services:
     environment:
       INTERNAL_PORT: 5000
       WORKERS: 2
-      DB_HOST: db
+      DB_HOST: nutsnbolts-db
       DB_PORT: 5432
       DB_NAME: nutsnbolts
       DB_USER: nutsnbolts
