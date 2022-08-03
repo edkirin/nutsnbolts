@@ -18,6 +18,14 @@ services:
       - WORKERS=2
     networks:
       - nutsnbolts-net
+  envoy:
+    image: envoyproxy/envoy:v1.22-latest
+    ports:
+      - "10000:10000"
+    networks:
+      - nutsnbolts-net
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
   nuts:
     image: nuts-service:latest
     command: /app/run.sh

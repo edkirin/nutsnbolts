@@ -7,5 +7,5 @@ from bolts.routers import counter
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-app.include_router(ping.router)
-app.include_router(counter.router)
+app.include_router(ping.router, prefix="/bolts")
+app.include_router(counter.router, prefix="/bolts")

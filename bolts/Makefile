@@ -58,3 +58,6 @@ ifneq ($(DOCKER_CONTAINER),)
 else
 	@echo "Command should be started inside container"
 endif
+
+run-local:
+	DB_PORT=5432 DB_HOST=localhost INTERNAL_PORT=5002 ./run.sh
