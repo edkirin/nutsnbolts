@@ -82,3 +82,13 @@ docker-compose up
 
 Running capps for the first time will create db initialization and migrations, so it might be required
 to restart docker-compose for other services to catch up.
+
+# Calling services
+
+```bash
+curl http://localhost/nuts/counter
+```
+
+```bash
+curl http://localhost/bolts/counter
+```
