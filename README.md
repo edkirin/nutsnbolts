@@ -42,3 +42,43 @@ output:
     }
 }
 ```
+
+# Install
+
+## API Gateway
+
+```bash
+cd apigateway
+make build
+```
+
+## Nuts
+
+```bash
+cd nuts
+make build
+```
+
+## Bolts
+
+```bash
+cd bolts
+make build
+```
+
+## Database
+
+```bash
+cd db
+make build
+```
+
+# Start
+
+```bash
+cd capps
+docker-compose up
+```
+
+Running capps for the first time will create db initialization and migrations, so it might be required
+to restart docker-compose for other services to catch up.

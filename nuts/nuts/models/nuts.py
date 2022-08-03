@@ -9,16 +9,11 @@ class NutsModel(Base):
     __tablename__ = "nuts"
 
     id = Column(Integer, primary_key=True, index=True)
-    counter = Column(String)
+    counter = Column(Integer)
 
     @classmethod
     def get_last_counter(cls, db: Session) -> Optional["NutsModel"]:
-        return (
-            db.
-            query(NutsModel).
-            order_by(NutsModel.id.desc()).
-            first()
-        )
+        return db.query(NutsModel).order_by(NutsModel.id.desc()).first()
 
     @classmethod
     def add_counter(cls, db: Session, counter: int):

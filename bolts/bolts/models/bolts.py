@@ -9,16 +9,11 @@ class BoltsModel(Base):
     __tablename__ = "bolts"
 
     id = Column(Integer, primary_key=True, index=True)
-    counter = Column(String)
+    counter = Column(Integer)
 
     @classmethod
     def get_last_counter(cls, db: Session) -> Optional["BoltsModel"]:
-        return (
-            db.
-            query(BoltsModel).
-            order_by(BoltsModel.id.desc()).
-            first()
-        )
+        return db.query(BoltsModel).order_by(BoltsModel.id.desc()).first()
 
     @classmethod
     def add_counter(cls, db: Session, counter: int):
