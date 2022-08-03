@@ -43,34 +43,10 @@ output:
 }
 ```
 
-# Install
-
-## API Gateway
+# Installation
 
 ```bash
-cd apigateway
-make build
-```
-
-## Nuts
-
-```bash
-cd nuts
-make build
-```
-
-## Bolts
-
-```bash
-cd bolts
-make build
-```
-
-## Database
-
-```bash
-cd db
-make build
+make build-all
 ```
 
 # Start
@@ -85,10 +61,26 @@ to restart docker-compose for other services to catch up.
 
 # Calling services
 
+## Using API Gateway
+
 ```bash
+curl http://localhost/nuts/ping
 curl http://localhost/nuts/counter
 ```
 
 ```bash
+curl http://localhost/bolts/ping
 curl http://localhost/bolts/counter
+```
+
+## Using Envoy Proxy
+
+```bash
+curl http://localhost:10000/nuts/ping
+curl http://localhost:10000/nuts/counter
+```
+
+```bash
+curl http://localhost:10000/bolts/ping
+curl http://localhost:10000/bolts/counter
 ```
