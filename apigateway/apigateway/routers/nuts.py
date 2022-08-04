@@ -12,7 +12,7 @@ async def nuts_proxy(request: Request, path: str):
         method=request.method,
         request=request,
         host=Config.nuts_host,
-        path=path,
+        path=f"/nuts/{path}",
     )
 
     return await proxy.execute()

@@ -9,7 +9,7 @@ services:
     image: apigateway-service:latest
     command: /app/run.sh
     ports:
-      - 80:5000
+      - "80:5000"
     environment:
       - INTERNAL_PORT=5000
       - EXTERNAL_PORT=80
